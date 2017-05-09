@@ -1,0 +1,11 @@
+{
+  "extensionName": {
+    "message": "window.navigator access logger"
+  },
+  "extensionDescription": {
+    "message": "Logs all accesses to the navigator object's properties via JS"
+  },
+  "consoleMessage": {
+    "message": "navigator.KEY accessed from"
+  }
+}
