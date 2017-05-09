@@ -13,8 +13,12 @@ window.wrappedJSObject.eval(`(function(I18NMessage) {
     try {
       let i = Proxy(); // Guaranteed to throw per-spec (needs "new").
     } catch(_) {
-      origConsole.error(I18NMessage.replace("OBJECT", obj) + "\\n" +
-                        _.stack.split("\\n").splice(stripFirst).join("\\n"));
+      // Use a timeout so that the browser doesn't lock up as badly
+      // if the tab carelessly calls methods over and over.
+      setTimeout(function() {
+        origConsole.error(I18NMessage.replace("OBJECT", obj) + "\\n" +
+                          _.stack.split("\\n").splice(stripFirst).join("\\n"));
+      }, 0);
     }
   }
 
