@@ -15,7 +15,8 @@ window.wrappedJSObject.eval(`(function(I18NMessage) {
         try {
           let i = Proxy(); // Guaranteed to throw per-spec (needs "new").
         } catch(_) {
-          origConsole.error(I18NMessage.replace("KEY", key) + "\\n" + _.stack);
+          origConsole.error(I18NMessage.replace("KEY", key) + "\\n" +
+                            _.stack.split("\\n").splice(1).join("\\n"));
         }
         return origValue.constructor === Function ?
                  origValue.call(null, arguments) : origValue;
